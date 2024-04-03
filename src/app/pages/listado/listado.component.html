@@ -1,0 +1,5 @@
+<div class="grid grid-cols-4 gap-5">
+	@for (personaje of personajes; track personaje.id) {
+	<app-tarjeta-personaje [personaje]="personaje" />
+	}
+</div>
