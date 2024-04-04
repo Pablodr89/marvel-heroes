@@ -23,6 +23,6 @@ export class MarvelService {
 
   searchPersonajes(name: string): Observable<Personaje> {
     console.log()
-    return this._http.get<Personaje>('https://gateway.marvel.com:443/v1/public/characters/?nameStartsWith=' + name + '&apikey=661010505df3bcbe7f1564878cce0e74')
+    return this._http.get<Personaje>('https://gateway.marvel.com:443/v1/public/characters/?name=' + name + '&limit=100&apikey=661010505df3bcbe7f1564878cce0e74')
   }
 }
