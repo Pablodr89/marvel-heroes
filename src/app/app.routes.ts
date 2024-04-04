@@ -10,5 +10,9 @@ export const routes: Routes = [
   {
     path: 'personaje/:id',
     component: PersonajeMarvelComponent
-  }
+  },
+  {
+    path: '**',
+    redirectTo: ''
+  },
 ];

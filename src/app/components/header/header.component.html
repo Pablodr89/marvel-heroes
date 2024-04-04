@@ -1,9 +1,17 @@
-<header class="">
-	<nav class="bg-gray-800 flex justify-center">
-		<a href="/">
-			<img src="../../../assets/8ee9c1e8083ebe9babe7208c1f46daca.png" class="w-20" alt="logo Marvel" />
-		</a>
-	</nav>
+<header>
+	<div>
+		<nav class="bg-gray-800 flex justify-between items-center px-20">
+			<div>
+				<a [routerLink]="['/']">
+					<img src="../../../assets/8ee9c1e8083ebe9babe7208c1f46daca.png" class="w-36" alt="logo Marvel" />
+				</a>
+			</div>
 
-	<div class="header"></div>
+			<div>
+				<p class="uppercase text-white text-2xl font-bold">Frikiwiki Marvel</p>
+			</div>
+		</nav>
+
+		<img src="../../../assets/avengers_2.jpg" class="w-full bg-center bg-cover header" alt="" />
+	</div>
 </header>
