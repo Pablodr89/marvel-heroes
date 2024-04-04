@@ -13,6 +13,7 @@ import { Result } from '../../interfaces/personaje'
 export class ListadoComponent implements OnInit {
 
   personajes: Result[] = []
+  carga: Boolean = false
 
   constructor(private marvelService: MarvelService) {
 
@@ -22,6 +23,7 @@ export class ListadoComponent implements OnInit {
     this.marvelService.getPersonajes().subscribe(
       personajes => {
         this.personajes = personajes.data.results
+        this.carga = true
         console.log(personajes)
       })
   }

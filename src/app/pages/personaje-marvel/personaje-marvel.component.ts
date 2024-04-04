@@ -13,6 +13,7 @@ import { switchMap } from 'rxjs';
 })
 export class PersonajeMarvelComponent implements OnInit {
   @Input() personaje!: Result
+  carga: Boolean = false
 
   constructor(private activatedRoute: ActivatedRoute, private _marvelService: MarvelService) {
 
@@ -25,6 +26,7 @@ export class PersonajeMarvelComponent implements OnInit {
       )
       .subscribe(personaje => {
         this.personaje = personaje.data.results[0]
+        this.carga = true
         console.log(personaje)
       })
   }
