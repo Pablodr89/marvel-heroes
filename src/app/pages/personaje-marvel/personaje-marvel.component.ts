@@ -3,11 +3,12 @@ import { Result } from '../../interfaces/personaje';
 import { ActivatedRoute } from '@angular/router';
 import { MarvelService } from '../../services/marvel.service';
 import { switchMap } from 'rxjs';
+import { SpinnerComponent } from '../../components/spinner/spinner.component';
 
 @Component({
   selector: 'app-personaje-marvel',
   standalone: true,
-  imports: [],
+  imports: [SpinnerComponent],
   templateUrl: './personaje-marvel.component.html',
   styleUrl: './personaje-marvel.component.css'
 })

@@ -2,11 +2,12 @@ import { TarjetaPersonajeComponent } from '../../components/tarjeta-personaje/ta
 import { MarvelService } from './../../services/marvel.service';
 import { Component, OnInit } from '@angular/core';
 import { Result } from '../../interfaces/personaje'
+import { SpinnerComponent } from '../../components/spinner/spinner.component';
 
 @Component({
   selector: 'app-listado',
   standalone: true,
-  imports: [TarjetaPersonajeComponent],
+  imports: [TarjetaPersonajeComponent, SpinnerComponent],
   templateUrl: './listado.component.html',
   styleUrl: './listado.component.css'
 })
