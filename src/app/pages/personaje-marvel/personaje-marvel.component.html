@@ -1,1 +1,35 @@
-{{ personaje.name }}
+<div class="flex justify-center">
+	<div class="max-w-max bg-white border border-gray-200 rounded-lg shadow h-full w-full">
+		<div class="flex gap-6">
+			<img
+				class="rounded-t-lg"
+				[src]="personaje.thumbnail.path + '.' + personaje.thumbnail.extension"
+				alt=""
+				class="w-1/3"
+			/>
+			<div class="mt-4">
+				<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Nombre: {{ personaje.name }}</h5>
+
+				<p class="mb-2 font-normal text-gray-700">
+					<span class="font-semibold text-lg">Descripcion:</span> {{ personaje.description }}
+				</p>
+
+				<p class="font-semibold">Comics:</p>
+				<ul class="mb-2">
+					@for (comic of personaje.comics.items; track $index) {
+					<li class="text-gray-700">- {{ comic.name }}</li>
+					}
+				</ul>
+
+				<p class="font-semibold">Urls:</p>
+				<ul class="mb-2">
+					@for (url of personaje.urls; track $index) {
+					<li class="text-gray-700 capitalize">
+						<a href="{{ url.url }}" target="_blank">- {{ url.type }}</a>
+					</li>
+					}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
