@@ -2,3 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 @import 'normalize.css';
+
+body {
+  min-height: 100vh;
+  position: relative;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+}
