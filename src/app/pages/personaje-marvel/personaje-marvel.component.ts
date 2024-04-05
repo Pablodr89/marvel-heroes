@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Result } from '../../interfaces/personaje';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MarvelService } from '../../services/marvel.service';
 import { switchMap } from 'rxjs';
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
@@ -8,7 +8,7 @@ import { SpinnerComponent } from '../../components/spinner/spinner.component';
 @Component({
   selector: 'app-personaje-marvel',
   standalone: true,
-  imports: [SpinnerComponent],
+  imports: [SpinnerComponent, RouterLink],
   templateUrl: './personaje-marvel.component.html',
   styleUrl: './personaje-marvel.component.css'
 })
