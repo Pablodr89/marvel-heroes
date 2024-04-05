@@ -14,7 +14,7 @@ import { SpinnerComponent } from '../../components/spinner/spinner.component';
 export class ListadoComponent implements OnInit {
 
   personajes: Result[] = []
-  carga: Boolean = false
+  carga: Boolean = true
 
   constructor(private marvelService: MarvelService) {
 
@@ -24,8 +24,8 @@ export class ListadoComponent implements OnInit {
     this.marvelService.getPersonajes().subscribe(
       personajes => {
         this.personajes = personajes.data.results
-        this.carga = true
-        console.log(personajes)
+        this.carga = false
+        // console.log(personajes)
       })
   }
 

@@ -14,7 +14,7 @@ import { SpinnerComponent } from '../../components/spinner/spinner.component';
 })
 export class PersonajeMarvelComponent implements OnInit {
   @Input() personaje!: Result
-  carga: Boolean = false
+  carga: Boolean = true
 
   constructor(private activatedRoute: ActivatedRoute, private _marvelService: MarvelService) {
 
@@ -27,8 +27,8 @@ export class PersonajeMarvelComponent implements OnInit {
       )
       .subscribe(personaje => {
         this.personaje = personaje.data.results[0]
-        this.carga = true
-        console.log(personaje)
+        this.carga = false
+        // console.log(personaje)
       })
   }
 }

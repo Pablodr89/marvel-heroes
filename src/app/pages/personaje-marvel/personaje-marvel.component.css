@@ -1,0 +1,11 @@
+@media (min-width: 768px) {
+  .margin {
+    margin-bottom: 37rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .margin {
+    margin-bottom: 17rem;
+  }
+}

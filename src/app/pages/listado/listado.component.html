@@ -1,8 +1,8 @@
-<!-- TODO: buscador de personajes y cargar mas(boton o scroll)-->
-@if (!carga) {
+<!-- TODO: buscador de personajes y cargar mas(boton o scroll) intentar footer abajo bien -->
+@if (carga) {
 <app-spinner />
 } @else {
-<div class="grid grid-cols-4 gap-5">
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mx-6">
 	@for (personaje of personajes; track personaje.id) {
 	<app-tarjeta-personaje [personaje]="personaje" />
 	}
