@@ -4,13 +4,13 @@ import { Component, OnInit, PipeTransform } from '@angular/core';
 import { Result } from '../../interfaces/personaje'
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { FilterPipe } from '../../pipes/buscador.pipe';
 
 @Component({
   selector: 'app-listado',
   standalone: true,
-  imports: [TarjetaPersonajeComponent, SpinnerComponent, InfiniteScrollModule, FormsModule, FilterPipe, ReactiveFormsModule],
+  imports: [TarjetaPersonajeComponent, SpinnerComponent, InfiniteScrollModule, FormsModule, FilterPipe],
   templateUrl: './listado.component.html',
   styleUrl: './listado.component.css'
 })
@@ -22,11 +22,7 @@ export class ListadoComponent implements OnInit {
   hasta: number = 8
   searchText: string = ''
 
-  miForm: FormGroup = this._fb.group({
-    name: ''
-  })
-
-  constructor(private marvelService: MarvelService, private _fb: FormBuilder) {
+  constructor(private marvelService: MarvelService) {
 
   }
 

@@ -1,0 +1,10 @@
+<div class="flex flex-col items-center mb-10">
+	<div class="max-w-lg bg-transparent border-gray-400 border-2 rounded-lg shadow h-full">
+		<button [routerLink]="['/listado']" class="text-center">
+			<h2 class="text-4xl font-mono mb-4">Bienvenido a la MarvelWiki</h2>
+			<p class="text-lg">Pulsa para ver toda la información sobre tus personajes de Marvel favoritos</p>
+		</button>
+	</div>
+
+	<app-slider [personajes]="personajes" />
+</div>
