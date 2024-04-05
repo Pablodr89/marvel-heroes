@@ -2,12 +2,11 @@ import { Component } from '@angular/core';
 import { Result } from '../../interfaces/personaje';
 import { MarvelService } from '../../services/marvel.service';
 import { RouterLink } from '@angular/router';
-import { SliderComponent } from '../../components/slider/slider.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, SliderComponent],
+  imports: [RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

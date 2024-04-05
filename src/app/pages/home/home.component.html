@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center mb-10">
+<div class="flex flex-col items-center mb-10 mx-6 md:mx-0">
 	<div class="max-w-lg bg-transparent border-gray-400 border-2 rounded-lg shadow h-full">
 		<button [routerLink]="['/listado']" class="text-center">
 			<h2 class="text-4xl font-mono mb-4">Bienvenido a la MarvelWiki</h2>
@@ -6,5 +6,49 @@
 		</button>
 	</div>
 
-	<app-slider [personajes]="personajes" />
+	<div id="default-carousel" class="relative w-full mt-14 flex justify-center" data-carousel="slide">
+		<!-- Carousel wrapper -->
+		<div class="relative h-56 w-full lg:w-3/5 overflow-hidden rounded-lg md:h-96">
+			<!-- Item 1 -->
+			<div class="duration-700 ease-in-out" data-carousel-item>
+				<img
+					[src]="personajes[0].thumbnail.path + '.' + personajes[0].thumbnail.extension"
+					class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+					alt="..."
+				/>
+			</div>
+			<!-- Item 2 -->
+			<div class="duration-700 ease-in-out" data-carousel-item>
+				<img
+					[src]="personajes[1].thumbnail.path + '.' + personajes[1].thumbnail.extension"
+					class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+					alt="..."
+				/>
+			</div>
+			<!-- Item 3 -->
+			<div class="duration-700 ease-in-out" data-carousel-item>
+				<img
+					[src]="personajes[2].thumbnail.path + '.' + personajes[2].thumbnail.extension"
+					class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+					alt="..."
+				/>
+			</div>
+			<!-- Item 4 -->
+			<div class="duration-700 ease-in-out" data-carousel-item>
+				<img
+					[src]="personajes[6].thumbnail.path + '.' + personajes[6].thumbnail.extension"
+					class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+					alt="..."
+				/>
+			</div>
+			<!-- Item 5 -->
+			<div class="duration-700 ease-in-out" data-carousel-item>
+				<img
+					[src]="personajes[4].thumbnail.path + '.' + personajes[4].thumbnail.extension"
+					class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+					alt="..."
+				/>
+			</div>
+		</div>
+	</div>
 </div>
