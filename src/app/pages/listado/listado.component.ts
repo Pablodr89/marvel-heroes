@@ -3,11 +3,12 @@ import { MarvelService } from './../../services/marvel.service';
 import { Component, OnInit } from '@angular/core';
 import { Result } from '../../interfaces/personaje'
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @Component({
   selector: 'app-listado',
   standalone: true,
-  imports: [TarjetaPersonajeComponent, SpinnerComponent],
+  imports: [TarjetaPersonajeComponent, SpinnerComponent, InfiniteScrollModule],
   templateUrl: './listado.component.html',
   styleUrl: './listado.component.css'
 })
@@ -15,6 +16,7 @@ export class ListadoComponent implements OnInit {
 
   personajes: Result[] = []
   carga: Boolean = true
+  hasta: number = 8
 
   constructor(private marvelService: MarvelService) {
 
@@ -23,10 +25,27 @@ export class ListadoComponent implements OnInit {
   ngOnInit(): void {
     this.marvelService.getPersonajes().subscribe(
       personajes => {
-        this.personajes = personajes.data.results
+        this.personajes = personajes.data.results.slice(0, this.hasta)
         this.carga = false
         // console.log(personajes)
       })
+  }
+
+  onScroll() {
+    this.hasta += 8
+    this.marvelService.getPersonajes().subscribe(
+      personajes => {
+        this.personajes = personajes.data.results.slice(0, this.hasta)
+        // console.log(personajes)
+      })
+  }
+
+  up() {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    })
   }
 
 }
