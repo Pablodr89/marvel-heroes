@@ -1,13 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Result } from '../interfaces/personaje';
 
 @Pipe({
-  name: 'buscador',
+  name: 'filter',
   standalone: true
 })
-export class BuscadorPipe implements PipeTransform {
+export class FilterPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(value: Result[], searchInput: string) {
+    searchInput = searchInput ? searchInput.toLowerCase() : '';
+    return searchInput ? value.filter(personaje => personaje.name.toLowerCase().includes(searchInput)) : value;
   }
-
 }
+

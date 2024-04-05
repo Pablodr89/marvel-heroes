@@ -17,12 +17,7 @@ export class MarvelService {
   }
 
   getPersonaje(id: number): Observable<Personaje> {
-    console.log(id)
+    // console.log(id)
     return this._http.get<Personaje>('https://gateway.marvel.com:443/v1/public/characters/' + id + '?apikey=661010505df3bcbe7f1564878cce0e74')
-  }
-
-  searchPersonajes(name: string): Observable<Personaje> {
-    console.log()
-    return this._http.get<Personaje>('https://gateway.marvel.com:443/v1/public/characters/?name=' + name + '&limit=100&apikey=661010505df3bcbe7f1564878cce0e74')
   }
 }

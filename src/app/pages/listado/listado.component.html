@@ -1,7 +1,17 @@
-<!-- TODO: buscador de personajes, intentar footer abajo bien -->
+<!-- TODO: intentar footer abajo bien -->
 @if (carga) {
 <app-spinner />
 } @else {
+<div class="flex justify-between items-center mb-5 ms-6 rounded-lg">
+	<input
+		type="text"
+		class="rounded-lg md:w-96 py-2"
+		[(ngModel)]="searchText"
+		placeholder="Buscar Personaje"
+		aria-label="Search"
+		aria-describedby="search-addon"
+	/>
+</div>
 <div
 	class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mx-6"
 	infiniteScroll
@@ -9,9 +19,15 @@
 	[infiniteScrollThrottle]="50"
 	(scrolled)="onScroll()"
 >
-	@for (personaje of personajes; track personaje.id) {
+	@if (searchText.length > 0) { @for (personaje of allPersonajes | filter: searchText; track personaje.id) {
 	<app-tarjeta-personaje [personaje]="personaje" />
-	}
+	} @empty {
+	<h2 class="text-4xl mt-16 mb-28">Upsss, no hemos encontrado ningún personaje con tu búsqueda</h2>
+	} } @else { @for (personaje of personajes; track personaje.id) {
+	<app-tarjeta-personaje [personaje]="personaje" />
+	} @empty {
+	<h2 class="text-4xl mt-16 mb-28">Upsss, no hemos encontrado ningún personaje con tu búsqueda</h2>
+	} }
 </div>
 
 <div class="mt-8 flex justify-end">
