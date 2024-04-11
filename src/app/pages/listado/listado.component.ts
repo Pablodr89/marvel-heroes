@@ -21,6 +21,7 @@ export class ListadoComponent implements OnInit {
   carga: Boolean = true
   hasta: number = 8
   searchText: string = ''
+  // offset: number = 0
 
   constructor(private marvelService: MarvelService) {
 
@@ -52,5 +53,29 @@ export class ListadoComponent implements OnInit {
       behavior: 'smooth',
     })
   }
+
+  /* Código comentado por no darme cuenta a la hora de hacer la app que podia usar el parametro offset para usarlo como
+  paginacion */
+
+  // ngOnInit(): void {
+  //   this.marvelService.getPersonajes(this.offset).subscribe(
+  //     personajes => {
+  //       this.personajes = personajes.data.results
+  //       this.allPersonajes = personajes.data.results
+  //       this.carga = false
+  //       // console.log(personajes)
+  //     })
+  // }
+
+  // onScroll() {
+  //   this.offset += 20
+  //   this.marvelService.getPersonajes(this.offset).subscribe(
+  //     personajes => {
+  //       personajes.data.results.forEach(element => {
+  //         this.personajes.push(element)
+  //       })
+  //       // console.log(this.personajes)
+  //     })
+  // }
 
 }
