@@ -12,7 +12,7 @@
 @if (carga) {
 <app-spinner />
 } @else { @if (miForm.value.nombre.length === 0) {
-
+<!-- Contenedor de tarjetas con scroll infinito -->
 <div
 	class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mx-6"
 	infiniteScroll
@@ -34,7 +34,7 @@
 </div>
 
 } @else {
-
+<!-- Contenedor de tarjetas de búsqueda -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mx-6">
 	@for (personaje of personajes; track personaje.id) {
 	<app-tarjeta-personaje [personaje]="personaje" />
