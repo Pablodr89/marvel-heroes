@@ -5,11 +5,12 @@ import { Result } from '../../interfaces/personaje'
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-listado',
   standalone: true,
-  imports: [TarjetaPersonajeComponent, SpinnerComponent, InfiniteScrollModule, ReactiveFormsModule],
+  imports: [TarjetaPersonajeComponent, SpinnerComponent, InfiniteScrollModule, ReactiveFormsModule, RouterLink],
   templateUrl: './listado.component.html',
   styleUrl: './listado.component.css'
 })
