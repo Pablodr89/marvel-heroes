@@ -19,21 +19,11 @@ export class HomeComponent {
   }
 
   ngOnInit(): void {
-    this.marvelService.getPersonajes().subscribe(
+    this.marvelService.getPersonajes(0).subscribe(
       personajes => {
         this.personajes = personajes.data.results.slice(0, 10)
         // console.log(personajes)
       })
   }
-
-  /* Código comentado por no darme cuenta a la hora de hacer la app que podia usar el parametro offset para usarlo como
- paginacion */
-  // ngOnInit(): void {
-  //   this.marvelService.getPersonajes(0).subscribe(
-  //     personajes => {
-  //       this.personajes = personajes.data.results.slice(0, 10)
-  //       // console.log(personajes)
-  //     })
-  // }
 
 }

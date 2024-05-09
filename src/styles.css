@@ -1,7 +1,7 @@
+@import 'normalize.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'normalize.css';
 
 body {
   min-height: 100vh;

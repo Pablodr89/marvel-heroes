@@ -1,17 +1,18 @@
-<!-- TODO: intentar footer abajo bien -->
+<div class="flex justify-between items-center mb-5 ms-6 rounded-lg">
+	<form [formGroup]="miForm" (ngSubmit)="search()">
+		<input type="text" class="rounded-lg md:w-96 py-2 mr-5" formControlName="nombre" placeholder="Buscar Personaje" />
+		<button
+			type="submit"
+			class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+		>
+			Buscar
+		</button>
+	</form>
+</div>
 @if (carga) {
 <app-spinner />
-} @else {
-<div class="flex justify-between items-center mb-5 ms-6 rounded-lg">
-	<input
-		type="text"
-		class="rounded-lg md:w-96 py-2"
-		[(ngModel)]="searchText"
-		placeholder="Buscar Personaje"
-		aria-label="Search"
-		aria-describedby="search-addon"
-	/>
-</div>
+} @else { @if (miForm.value.nombre.length === 0) {
+
 <div
 	class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mx-6"
 	infiniteScroll
@@ -19,49 +20,34 @@
 	[infiniteScrollThrottle]="50"
 	(scrolled)="onScroll()"
 >
-	@if (searchText.length > 0) { @for (personaje of allPersonajes | filter: searchText; track personaje.id) {
+	@for (personaje of personajes; track personaje.id) {
 	<app-tarjeta-personaje [personaje]="personaje" />
 	} @empty {
 	<h2 class="text-4xl mt-16 mb-28">Upsss, no hemos encontrado ningún personaje con tu búsqueda</h2>
-	} } @else { @for (personaje of personajes; track personaje.id) {
-	<app-tarjeta-personaje [personaje]="personaje" />
-	} @empty {
-	<h2 class="text-4xl mt-16 mb-28">Upsss, no hemos encontrado ningún personaje con tu búsqueda</h2>
-	} }
+	}
 </div>
 
-<div class="flex justify-end mt-8">
+<div class="fixed right-10 bottom-5">
 	<button (click)="up()">
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			class="icon icon-tabler icon-tabler-arrow-big-up-lines-filled"
-			width="44"
-			height="44"
-			viewBox="0 0 24 24"
-			stroke-width="1.5"
-			stroke="#ffffff"
-			fill="none"
-			stroke-linecap="round"
-			stroke-linejoin="round"
-		>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-			<path
-				d="M10.586 3l-6.586 6.586a2 2 0 0 0 -.434 2.18l.068 .145a2 2 0 0 0 1.78 1.089h2.586v2a1 1 0 0 0 1 1h6l.117 -.007a1 1 0 0 0 .883 -.993l-.001 -2h2.587a2 2 0 0 0 1.414 -3.414l-6.586 -6.586a2 2 0 0 0 -2.828 0z"
-				stroke-width="0"
-				fill="currentColor"
-			/>
-			<path
-				d="M15 20a1 1 0 0 1 .117 1.993l-.117 .007h-6a1 1 0 0 1 -.117 -1.993l.117 -.007h6z"
-				stroke-width="0"
-				fill="currentColor"
-			/>
-			<path
-				d="M15 17a1 1 0 0 1 .117 1.993l-.117 .007h-6a1 1 0 0 1 -.117 -1.993l.117 -.007h6z"
-				stroke-width="0"
-				fill="currentColor"
-			/>
-		</svg>
+		<i class="icon-[humbleicons--arrow-up] pl-32 text-3xl"></i>
 	</button>
 </div>
 
-}
+} @else {
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mx-6">
+	@for (personaje of personajes; track personaje.id) {
+	<app-tarjeta-personaje [personaje]="personaje" />
+	} @empty {
+	<h2 class="text-4xl mt-16 mb-28">Upsss, no hemos encontrado ningún personaje con tu búsqueda</h2>
+	}
+</div>
+<div class="flex justify-end mr-5 mt-5">
+	<button
+		class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+		(click)="volver()"
+	>
+		Volver atrás
+	</button>
+</div>
+} }

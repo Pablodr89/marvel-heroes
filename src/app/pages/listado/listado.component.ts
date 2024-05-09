@@ -4,45 +4,46 @@ import { Component, OnInit, PipeTransform } from '@angular/core';
 import { Result } from '../../interfaces/personaje'
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { FormsModule } from '@angular/forms';
-import { FilterPipe } from '../../pipes/buscador.pipe';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-listado',
   standalone: true,
-  imports: [TarjetaPersonajeComponent, SpinnerComponent, InfiniteScrollModule, FormsModule, FilterPipe],
+  imports: [TarjetaPersonajeComponent, SpinnerComponent, InfiniteScrollModule, ReactiveFormsModule],
   templateUrl: './listado.component.html',
   styleUrl: './listado.component.css'
 })
 export class ListadoComponent implements OnInit {
 
   personajes: Result[] = []
-  allPersonajes: Result[] = []
   carga: Boolean = true
-  hasta: number = 8
-  searchText: string = ''
-  // offset: number = 0
+  offset: number = 0
 
-  constructor(private marvelService: MarvelService) {
+  miForm: FormGroup = this._fb.group({
+    nombre: ''
+  })
+
+  constructor(private marvelService: MarvelService, private _fb: FormBuilder) {
 
   }
 
   ngOnInit(): void {
-    this.marvelService.getPersonajes().subscribe(
+    this.marvelService.getPersonajes(this.offset).subscribe(
       personajes => {
-        this.personajes = personajes.data.results.slice(0, this.hasta)
-        this.allPersonajes = personajes.data.results
+        this.personajes = personajes.data.results
         this.carga = false
         // console.log(personajes)
       })
   }
 
   onScroll() {
-    this.hasta += 8
-    this.marvelService.getPersonajes().subscribe(
+    this.offset += 20
+    this.marvelService.getPersonajes(this.offset).subscribe(
       personajes => {
-        this.personajes = personajes.data.results.slice(0, this.hasta)
-        // console.log(personajes)
+        personajes.data.results.forEach(element => {
+          this.personajes.push(element)
+        })
+        // console.log(this.personajes)
       })
   }
 
@@ -54,28 +55,15 @@ export class ListadoComponent implements OnInit {
     })
   }
 
-  /* Código comentado por no darme cuenta a la hora de hacer la app que podia usar el parametro offset para usarlo como
-  paginacion */
+  search() {
+    this.marvelService.getPersonajesSearch(this.miForm.value.nombre).subscribe(
+      personajes => {
+        this.personajes = personajes.data.results
+        // console.log(this.personajes)
+      })
+  }
 
-  // ngOnInit(): void {
-  //   this.marvelService.getPersonajes(this.offset).subscribe(
-  //     personajes => {
-  //       this.personajes = personajes.data.results
-  //       this.allPersonajes = personajes.data.results
-  //       this.carga = false
-  //       // console.log(personajes)
-  //     })
-  // }
-
-  // onScroll() {
-  //   this.offset += 20
-  //   this.marvelService.getPersonajes(this.offset).subscribe(
-  //     personajes => {
-  //       personajes.data.results.forEach(element => {
-  //         this.personajes.push(element)
-  //       })
-  //       // console.log(this.personajes)
-  //     })
-  // }
-
+  volver() {
+    location.reload()
+  }
 }
