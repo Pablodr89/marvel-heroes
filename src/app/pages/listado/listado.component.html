@@ -14,7 +14,7 @@
 <div
 	class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mx-6"
 	infiniteScroll
-	[infiniteScrollDistance]="2"
+	[infiniteScrollDistance]="3"
 	[infiniteScrollThrottle]="50"
 	(scrolled)="onScroll()"
 >
@@ -25,11 +25,7 @@
 	}
 </div>
 
-<div class="fixed right-10 bottom-5">
-	<button (click)="up()">
-		<i class="icon-[humbleicons--arrow-up] pl-20 text-3xl"></i>
-	</button>
-</div>
+<app-flecha-arriba />
 
 } @else {
 <!-- Contenedor de tarjetas de búsqueda -->
