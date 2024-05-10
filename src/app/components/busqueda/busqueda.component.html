@@ -1,0 +1,7 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mx-6">
+	@for (personaje of personajesBusqueda; track personaje.id) {
+	<app-tarjeta-personaje [personaje]="personaje" />
+	} @empty {
+	<h2 class="text-4xl mt-16 mb-28">Upsss, no hemos encontrado ningún personaje con tu búsqueda</h2>
+	}
+</div>

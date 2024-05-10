@@ -4,27 +4,25 @@ import { Component, OnInit, PipeTransform } from '@angular/core';
 import { Result } from '../../interfaces/personaje'
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { BusquedaComponent } from '../../components/busqueda/busqueda.component';
 
 @Component({
   selector: 'app-listado',
   standalone: true,
-  imports: [TarjetaPersonajeComponent, SpinnerComponent, InfiniteScrollModule, ReactiveFormsModule, RouterLink],
+  imports: [TarjetaPersonajeComponent, SpinnerComponent, BusquedaComponent, InfiniteScrollModule, FormsModule],
   templateUrl: './listado.component.html',
   styleUrl: './listado.component.css'
 })
 export class ListadoComponent implements OnInit {
 
   personajes: Result[] = []
+  personajesBusqueda: Result[] = []
   carga: Boolean = true
   offset: number = 0
+  nombre: string = ''
 
-  miForm: FormGroup = this._fb.group({
-    nombre: ''
-  })
-
-  constructor(private marvelService: MarvelService, private _fb: FormBuilder) {
+  constructor(private marvelService: MarvelService) {
 
   }
 
@@ -57,9 +55,10 @@ export class ListadoComponent implements OnInit {
   }
 
   search() {
-    this.marvelService.getPersonajesSearch(this.miForm.value.nombre).subscribe(
+    this.marvelService.getPersonajesSearch(this.nombre).subscribe(
       personajes => {
-        this.personajes = personajes.data.results
+        this.personajesBusqueda = personajes.data.results
+        this.carga = false
         // console.log(this.personajes)
       })
   }
